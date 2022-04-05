@@ -6,7 +6,7 @@
   * _env - Prints the current environment
   * Return: void
   */
-int _env(void)
+int _env(__attribute__((unused))char *command[])
 {
 	int i = 0;
 
