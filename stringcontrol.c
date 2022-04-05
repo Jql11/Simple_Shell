@@ -6,7 +6,7 @@
   * @s: string to check
   * Return: return the length.
   */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int count = 0;
 
@@ -111,7 +111,7 @@ int compare(const char *X, const char *Y)
 * @needle: substring containing the charcters in haystack
 * Return: a pointer to the beginning of the located substring
 */
-char *_strstr(char *haystack, char *needle)
+char *_strstr(char *haystack, const char *needle)
 {
 	if (*needle == '\0')
 		return (haystack);
