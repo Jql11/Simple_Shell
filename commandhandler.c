@@ -54,25 +54,28 @@ int getexecve(char *command[], char *argv[], char *envp[])
 	}
 	if (child == 0)
 	{
-		if (stat(command[0], &st) != 0)
+		if (_getbuiltin(command) == 0)
 		{
-			commandWithPath = _getpath("PATH", command[0]);
-			if (commandWithPath)
+			if (stat(command[0], &st) != 0)
 			{
-				command[0] = commandWithPath;
+				commandWithPath = _getpath("PATH", command[0]);
+				if (commandWithPath)
+				{
+					command[0] = commandWithPath;
+					if (execve(command[0], command, envp) == -1)
+					{
+						perror(argv[0]);
+						exit(0);
+					}
+				}
+			}
+			else
+			{
 				if (execve(command[0], command, envp) == -1)
 				{
 					perror(argv[0]);
 					exit(0);
 				}
-			}
-		}
-		else
-		{
-			if (execve(command[0], command, envp) == -1)
-			{
-				perror(argv[0]);
-				exit(0);
 			}
 		}
 	}
@@ -89,12 +92,11 @@ int getexecve(char *command[], char *argv[], char *envp[])
 
 char *_getenv(const char *name)
 {
-	unsigned int i;
+	unsigned int i = 0;
 	char *ret = NULL;
 	int len;
 
 	len = _strlen(name);
-	i = 0;
 	while (environ[i])
 	{
 		ret = _strstr(environ[i], name);

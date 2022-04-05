@@ -1,10 +1,12 @@
 #include <unistd.h>
+#include <stdio.h>
 #include "main.h"
 /**
   * _env - Prints the current environment
+  * @command: command
   * Return: void
   */
-int _env(void)
+int _env(__attribute__((unused))char *command[])
 {
 	int i = 0;
 
