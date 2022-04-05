@@ -1,11 +1,12 @@
 #include "main.h"
 #include <unistd.h>
-int _exit(char **argv);
-int _env(void);
+#include <stdio.h>
+int get_exit(char **argv);
+int _env(char **argv);
 int _cd(char **argv);
 
 char *builtin_str[] = {"exit", "env", "cd"};
-int (*builtin_func[]) (char **) = {&_exit, &_env, &_cd};
+int (*builtin_func[]) (char **) = {&get_exit, &_env, &_cd};
 int num_builtin(void)
 {
 	return (sizeof(builtin_str) / sizeof(char *));
@@ -18,8 +19,8 @@ int builtin_execute(char **argv)
 		return (1);
 	for (i = 0; i < num_builtin(); i++)
 	{
-		if (_strcmp(argv[0], builtin_str[i] == 0))
-			return (*builtin_func[i](args));
+		if (_strcmp(argv[0], builtin_str[i]) == 0)
+			return (*builtin_func[i](argv));
 	}
 	return (getexecve(command, argv, envp));
 }
@@ -27,7 +28,7 @@ int builtin_execute(char **argv)
   * _env - Prints the current environment
   * Return: void
   */
-int _env(void)
+int _env(char **argv)
 {
 	int i = 0;
 
@@ -46,7 +47,7 @@ int _env(void)
   *@args: argument
   *return: 0 as a signal for the command loop to terminate
   */
-int _exit(char **argv)
+int get_exit(char **argv)
 {
 	return (0);
 }
@@ -63,8 +64,8 @@ int _cd(char **argv)
 	}
 	else
 	{
-		if (chdir(argv[1] != 0))
-			perror("ERROR")；
+		if (chdir(argv[1]) != 0)
+			perror("err");
 	}
 	return (1);
 }

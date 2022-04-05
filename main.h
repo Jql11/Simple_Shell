@@ -11,9 +11,9 @@ char **getcommands(char *buffer);
 int getexecve(char *command[], char *argv[], char *envp[]);
 
 /* built-in function */
-int _env(void);
+int _env(char **argv);
 int _cd(char **argv);
-int _exit(char **argv);
+int get_exit(char **argv);
 
 /* string manipulation */
 int _strlen(const char *s);/* returns the length of a string.*/
