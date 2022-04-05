@@ -1,34 +1,12 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdio.h>
-int get_exit(char **argv);
-int _env(char **argv);
-int _cd(char **argv);
 
-char *builtin_str[] = {"exit", "env", "cd"};
-int (*builtin_func[]) (char **) = {&get_exit, &_env, &_cd};
-int num_builtin(void)
-{
-	return (sizeof(builtin_str) / sizeof(char *));
-}
-
-int builtin_execute(char **argv)
-{
-	int i;
-	if (argv[0] == NULL)
-		return (1);
-	for (i = 0; i < num_builtin(); i++)
-	{
-		if (_strcmp(argv[0], builtin_str[i]) == 0)
-			return (*builtin_func[i](argv));
-	}
-	return (getexecve(command, argv, envp));
-}
 /**
   * _env - Prints the current environment
   * Return: void
   */
-int _env(char **argv)
+int _env(void)
 {
 	int i = 0;
 
