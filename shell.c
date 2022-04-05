@@ -4,56 +4,39 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include "main.h"
+
 /**
- * main - execve example
- *
+ * main - main function
+ * @ac: number of arguments
+ * @argv: array of arguments
+ * @envp: array of environment path
  * Return: Always 0.
  */
 
-int main(int ac,char *argv[], char *envp[])
+int main(int ac, char *argv[], char *envp[])
 {
-	pid_t child;
-	char *tok, *command[16];
-	int status;
 	char *buffer = NULL;
-	size_t i, bufsize = 32;
+	size_t bufsize = 32;
+	char **command;
 
-	buffer = (char *)malloc(bufsize * sizeof(char));
-    if(buffer == NULL)
-    {
-        perror("Unable to allocate buffer");
-        exit(1);
-    }
-    while (1)
-    {
-    	printf("#cisfun$ ");
-    	if  (getline(&buffer,&bufsize,stdin) == -1)
-		break;
-	tok = strtok(buffer, " \t\n\r");
-	for (i = 0; i < 16 && tok != NULL; i++)
+	buffer = (char *)malloc(sizeof(*buffer));
+	if (buffer == NULL)
 	{
-		command[i] = tok;
-		tok = strtok(NULL, " \t\n\r");
+		perror("Unable to allocate buffer");
+		exit(1);
 	}
-	command[i] = NULL;
-	child = fork();
-    	if (child == -1)
-    	{
-	    printf("ERROR: child process fail\n");
-	    return (1);
-    	}
-    	if (child == 0)
-    	{
-		if (execve(command[0], command, envp) == -1)
-	    {
-		    perror(argv[0]);
-		    exit(EXIT_FAILURE);
-	    }
-    	}
-    	else
-		    wait(&status);
-    }
-    free(buffer);
-    exit(status);
+	while (1)
+	{
+		printf("#cisfun$ ");
+		if (getline(&buffer, &bufsize, stdin) == -1)
+		{
+			printf("\n");
+			break;
+		}
+		command = getcommands(buffer);
+		getexecve(command, argv, envp);
+	}
+	free(buffer);
+	exit(0);
 }
-
