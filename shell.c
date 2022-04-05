@@ -20,6 +20,12 @@ int main(int ac, char *argv[], char *envp[])
 	size_t bufsize = 32;
 	char **command;
 
+	if(ac < 1)
+	{
+		printf("Invalid input.\n");
+		exit(1);
+	}
+
 	buffer = (char *)malloc(sizeof(*buffer));
 	if (buffer == NULL)
 	{
@@ -32,6 +38,7 @@ int main(int ac, char *argv[], char *envp[])
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			printf("\n");
+			free(buffer);
 			break;
 		}
 		command = getcommands(buffer);
