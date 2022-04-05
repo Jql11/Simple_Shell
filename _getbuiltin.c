@@ -10,7 +10,8 @@ int _getbuiltin(char *command[])
 	int i = 0;
 	mybuiltin builtin[] = {
 		{"env", _env},
-		{NULL, NULL}
+		{"exit", get_exit},
+		{"cd", _cd}
 		};
 
 	if (command == NULL)
