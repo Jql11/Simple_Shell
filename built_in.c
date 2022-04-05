@@ -1,6 +1,28 @@
 #include "main.h"
 #include <unistd.h>
+int _exit(char **argv);
+int _env(void);
+int _cd(char **argv);
 
+char *builtin_str[] = {"exit", "env", "cd"};
+int (*builtin_func[]) (char **) = {&_exit, &_env, &_cd};
+int num_builtin(void)
+{
+	return (sizeof(builtin_str) / sizeof(char *));
+}
+
+int builtin_execute(char **argv)
+{
+	int i;
+	if (argv[0] == NULL)
+		return (1);
+	for (i = 0; i < num_builtin(); i++)
+	{
+		if (_strcmp(argv[0], builtin_str[i] == 0))
+			return (*builtin_func[i](args));
+	}
+	return (getexecve(command, argv, envp));
+}
 /**
   * _env - Prints the current environment
   * Return: void
@@ -24,7 +46,7 @@ int _env(void)
   *@args: argument
   *return: 0 as a signal for the command loop to terminate
   */
-int _exit(char **args)
+int _exit(char **argv)
 {
 	return (0);
 }
@@ -33,15 +55,15 @@ int _exit(char **args)
   *@args: argument
   *return: return 1
   */
-int _cd(char **args)
+int _cd(char **argv)
 {
-	if (args[1] == NULL)
+	if (argv[1] == NULL)
 	{
 		fprintf(stderr, "lsh: expected argument to \"cd\"\n");
 	}
 	else
 	{
-		if (chdir(args[1] != 0))
+		if (chdir(argv[1] != 0))
 			perror("ERROR")；
 	}
 	return (1);
