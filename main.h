@@ -18,4 +18,5 @@ char *_strdup(char *str);
 /* get the whole path including the path and filename */
 char *_getpath(char *envirname, char *command);
 
+int exit();
 #endif
