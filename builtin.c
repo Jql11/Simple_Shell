@@ -25,7 +25,7 @@ int _env(__attribute__((unused))char *command[])
   *@args: argument		
   *return: 0 as a signal for the command loop to terminate		
   */		
-int get_exit(char **argv)		
+int get_exit(__attribute__((unused))char **argv)		
 {		
 	return (0);		
 }		

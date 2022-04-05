@@ -24,7 +24,7 @@ int getexecve(char *command[], char *argv[], char *envp[]);
 
 /* built-in function */
 int _cd(char **argv);
-int get_exit(char **argv);
+int get_exit(__attribute__((unused))char **argv);
 /* check if it is builtin */
 int _getbuiltin(char *command[]);
 /* print out environment variable */
