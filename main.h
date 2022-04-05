@@ -11,7 +11,7 @@ char **getcommands(char *buffer);
 int getexecve(char *command[], char *argv[], char *envp[]);
 
 /* built-in function */
-int _env(char **argv);
+int _env(__attribute__((unused))char *command[]);
 int _cd(char **argv);
 int get_exit(char **argv);
 
