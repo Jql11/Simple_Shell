@@ -93,11 +93,11 @@ char *_getenv(const char *name)
 	char *ret = NULL;
 	int len;
 
-	len = strlen(name);
+	len = _strlen(name);
 	i = 0;
 	while (environ[i])
 	{
-		ret = strstr(environ[i], name);
+		ret = _strstr(environ[i], name);
 		if (ret)
 			return (ret + len + 1);
 		i++;
@@ -131,8 +131,8 @@ char *_getpath(char *envirname, char *command)
 	for (j = 0; j < count; j++)
 	{
 		pathname = _strdup(path[j]);
-		pathname = strcat(pathname, "/");
-		pathname = strcat(pathname, command);
+		pathname = _strcat(pathname, "/");
+		pathname = _strcat(pathname, command);
 		if (stat(pathname, &st) == 0)
 			return (pathname);
 	}

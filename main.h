@@ -17,9 +17,10 @@ int _env(void);
 int _strlen(char *s);/* returns the length of a string.*/
 char *_strdup(char *str);/* return a pointer to the new string */
 int _strcmp(char *s1, char *s2);/* compare 2 strings */
+char *_strcat(char *dest, char *src)/*concatenates two strings*/
+char *_strstr(char *haystack, char *needle)/*returns pointer to the first occurrence of the matched string in the given string*/
 
 /* get the whole path including the path and filename */
 char *_getpath(char *envirname, char *command);
 
-int exit();
 #endif
