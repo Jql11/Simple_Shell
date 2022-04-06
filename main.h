@@ -33,6 +33,8 @@ char *_getpath(char *envirname, char *command);
 /* built-in function */
 int _cd(char **argv);
 int get_exit(__attribute__((unused))char **argv);
+int get_help(char **argv);
+
 /* check if it is builtin */
 int _getbuiltin(char *command[]);
 /* print out environment variable */
