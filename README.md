@@ -64,9 +64,9 @@ Stop and return to your original shell
 ```
 ## To Do
 More functionality can still be added (e.g. handle aliases, pipelines)
-
-## Authors
 ***
+## Authors
+
 * Jacqueline Lu 
 * Yuan Fang 
 * Cienna Nguyen
