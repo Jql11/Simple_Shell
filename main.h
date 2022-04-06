@@ -18,9 +18,17 @@ typedef struct builtin
 
 /* get the commands from the command line */
 char **getcommands(char *buffer);
+/* get the numbers of commands */
+int commandlen(char *command[]);
 
 /* use execve to run the command */
 int getexecve(char *command[], char *argv[], char *envp[]);
+
+/* get the environment variables */
+char *_getenv(const char *name);
+
+/* get the whole path including the path and filename */
+char *_getpath(char *envirname, char *command);
 
 /* built-in function */
 int _cd(char **argv);
@@ -29,6 +37,11 @@ int get_exit(__attribute__((unused))char **argv);
 int _getbuiltin(char *command[]);
 /* print out environment variable */
 int _env(__attribute__((unused))char *command[]);
+/* set environment variables */
+int _setenv(char *command[]);
+/* remove environment variable */
+int _unsetenv(char *command[]);
+
 /* string manipulation */
 /* returns the length of a string.*/
 int _strlen(const char *s);
@@ -40,7 +53,6 @@ int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 /* returns pointer to first occurrence of the matched string in given string */
 char *_strstr(char *haystack, const char *needle);
-/* get the whole path including the path and filename */
-char *_getpath(char *envirname, char *command);
+
 
 #endif
