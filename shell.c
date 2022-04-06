@@ -20,7 +20,7 @@ int main(int ac, char *argv[], char *envp[])
 	size_t bufsize = 32;
 	char **command;
 
-	if(ac < 1)
+	if (ac < 1)
 	{
 		printf("Invalid input.\n");
 		exit(1);
@@ -46,5 +46,6 @@ int main(int ac, char *argv[], char *envp[])
 		getexecve(command, argv, envp);
 	}
 	free(buffer);
+	free(command);
 	exit(0);
 }

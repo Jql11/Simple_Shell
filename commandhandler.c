@@ -23,6 +23,11 @@ char **getcommands(char *buffer)
 	if (command == NULL)
 		return (NULL);
 	token = strtok(buffer, " \t\n\r");
+	if (token == NULL)
+	{
+		perror("Allocation error");
+		exit(EXIT_FAILURE);
+	}
 	for (i = 0; i < 16 && token != NULL; i++)
 	{
 		command[i] = token;
@@ -65,7 +70,7 @@ int getexecve(char *command[], char *argv[], char *envp[])
 					if (execve(command[0], command, envp) == -1)
 					{
 						perror(argv[0]);
-						exit(0);
+						exit(EXIT_FAILURE);
 					}
 				}
 			}
@@ -74,7 +79,7 @@ int getexecve(char *command[], char *argv[], char *envp[])
 				if (execve(command[0], command, envp) == -1)
 				{
 					perror(argv[0]);
-					exit(0);
+					exit(EXIT_FAILURE);
 				}
 			}
 		}
@@ -100,6 +105,7 @@ char *_getenv(const char *name)
 	while (environ[i])
 	{
 		ret = _strstr(environ[i], name);
+		printf("environ[%d] is %s\n", i, environ[i]);
 		if (ret)
 			return (ret + len + 1);
 		i++;
@@ -116,20 +122,25 @@ char *_getenv(const char *name)
  */
 char *_getpath(char *envirname, char *command)
 {
-	char *token, *pathname;
+	char *token, *pathname, *environhold;
 	char *path[32];
 	int i, j, count = 0;
 	struct stat st;
 	char *environment = _getenv(envirname);
 
-
-	token = strtok(environment, ":");
+	environhold = malloc(_strlen(environment) + 1);
+	if (environhold == NULL)
+		return (NULL);
+	strcpy(environhold, environment);
+	token = strtok(environhold, ":");
 	for (i = 0; i < 32 && token != NULL; i++)
 	{
 		path[i] = token;
 		count++;
 		token = strtok(NULL, ":");
+		printf("path[%d] is %s\n", i, path[i]);
 	}
+	free(environhold);
 	for (j = 0; j < count; j++)
 	{
 		pathname = _strdup(path[j]);

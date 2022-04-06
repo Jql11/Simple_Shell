@@ -31,6 +31,7 @@ char *_getenv(const char *name);
 char *_getpath(char *envirname, char *command);
 
 /* built-in function */
+int update_pwd(char *pwd);
 int _cd(char **argv);
 int get_exit(__attribute__((unused))char **argv);
 void ctrl_c(int a);
