@@ -17,16 +17,20 @@ To learn more about how the shell works, visit our blog here [blog]()
 `perror`, `fork`, `signal`, `malloc`, `free`, `getcwd`, `chdir`, `execve`, `write`, `wait`, `exit`
 
 ## Description of what each file shows:
-main.h ---------------------------- holds prototypes of functions spread across all files
-shell.c ----------------------------holds entrance into program
-man_3_shell ------------------------custom manpage for our simple shell
+| File Name | Description |
+|-----------|-------------|
+| main.h | holds prototypes of functions spread across all files |
+| shell.c | holds entrance into program |
+| man_3_shell | custom manpage for our simple shell |
 
 ### Helper files
-_env.c------------------------------functions for built-in commands including env, setenv, unsetenv
-built_in.c--------------------------functions for built-in commands including exit, cd, ctrl_c
-_getbuiltin.c-----------------------execute functions for built-in commands
-commandhandler.c--------------------read parse and execute commands 
-stringcontrol.c---------------------handle strings including comparing, duplicating, concatenatingand length of a string
+| File Name | Description |
+|-----------|-------------|
+| _env.c | functions for built-in commands including env, setenv, unsetenv |
+| built_in.c | functions for built-in commands including exit, cd, ctrl_c |
+| _getbuiltin.c | execute functions for built-in commands |
+| commandhandler.c | read parse and execute commands |
+| stringcontrol.c | handle strings including comparing, duplicating, concatenatingand length of a string |
 
 ## Environment
 * Language: C
