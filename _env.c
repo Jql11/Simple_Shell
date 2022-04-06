@@ -19,7 +19,6 @@ int _env(__attribute__((unused))char *command[])
 	}
 	return (0);
 }
-
 /**
  * commandlen - check the numbers of commands
  * @command: pointer to the command array
