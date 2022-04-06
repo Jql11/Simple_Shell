@@ -1,6 +1,7 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 /**
   *get_exit- exit function
   *@argv: argument
@@ -8,7 +9,8 @@
   */
 int get_exit(__attribute__((unused))char **argv)
 {
-	return (0);
+	printf("EXIT SUCCESS");
+	exit(0);
 }
 /**
   *_cd - change current directory
@@ -17,27 +19,25 @@ int get_exit(__attribute__((unused))char **argv)
   */
 int _cd(char **argv)
 {
-	if (argv[1] == NULL)
-		perror("expected argument to \"cd\"");
+
+	if (argv[1] == NULL || (argv[1][0] == '~' && argv[1][1] == '\0'))
+	{
+		chdir(_getenv("HOME"));
+		setenv("PWD", getcwd(NULL, 0),1);
+	}
+
+	else if (argv[1][0] == '-' && argv[1][1] == '\0')
+	{
+		printf("%s\n", getenv("OLDPWD"));
+		chdir(getenv("OLDPWD"));
+	}
+	else if (chdir(argv[1]) != 0)
+			perror("err");
 	else
 	{
-		if (chdir(argv[1]) != 0)
-			perror("err");
+		chdir(argv[1]);
+		setenv("PWD", getcwd(NULL, 0),1);
 	}
 	return (1);
 }
-/**
-  *get_help - help
-  *@argv: argument
-  *Return: 1
-  *
-int get_help(char **argv)
-{
-	int i;
 
-	for (i = 0; builtin[i].name != NULL; i++)
-	{
-		builtin_str[i].name;
-	}
-	return (1);
-}*/
