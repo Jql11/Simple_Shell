@@ -62,7 +62,7 @@ Stop and return to your original shell
 #cisfun$ exit
 (your_terminal)$
 ```
-# To Do
+## To Do
 More functionality can still be added (e.g. handle aliases, pipelines)
 
 ## Authors
