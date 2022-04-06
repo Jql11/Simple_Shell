@@ -40,4 +40,11 @@ int _cd(char **argv)
 	}
 	return (1);
 }
-
+/**
+  *ctrl_c - make ctrl_c not working
+  *@n: int for signal
+  */
+void ctrl_c(__attribute__((unused))int a)
+{
+	write(STDOUT_FILENO, "", 0);
+}
