@@ -9,7 +9,8 @@
   */
 int get_exit(__attribute__((unused))char **argv)
 {
-	printf("EXIT SUCCESS");
+	write(STDOUT_FILENO,"EXIT SUCCESS", 12);
+	write(STDOUT_FILENO, "\n", 1);
 	exit(0);
 }
 /**
@@ -23,21 +24,32 @@ int _cd(char **argv)
 	if (argv[1] == NULL || (argv[1][0] == '~' && argv[1][1] == '\0'))
 	{
 		chdir(_getenv("HOME"));
-		setenv("PWD", getcwd(NULL, 0),1);
+		setenv("PWD", getcwd(NULL, 0), 1);
 	}
 
 	else if (argv[1][0] == '-' && argv[1][1] == '\0')
 	{
-		printf("%s\n", getenv("OLDPWD"));
+		write(STDOUT_FILENO, getenv("OLDPWD"), _strlen(getenv("OLDPWD")));
+		write(STDOUT_FILENO, "\n", 1);
 		chdir(getenv("OLDPWD"));
 	}
-	else if (chdir(argv[1]) != 0)
-			perror("err");
 	else
 	{
-		chdir(argv[1]);
-		setenv("PWD", getcwd(NULL, 0),1);
+		if (chdir(argv[1]) != 0)
+			perror("err");
+		else
+		{
+			chdir(argv[1]);
+			setenv("PWD", getcwd(NULL, 0), 1);
+		}
 	}
 	return (1);
 }
-
+/**
+  *ctrl_c - make ctrl_c not working
+  *@a: int for signal
+  */
+void ctrl_c(__attribute__((unused))int a)
+{
+	write(STDOUT_FILENO, "", 0);
+}

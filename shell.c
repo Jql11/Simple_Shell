@@ -35,6 +35,7 @@ int main(int ac, char *argv[], char *envp[])
 	while (1)
 	{
 		printf("#cisfun$ ");
+/*		signal(SIGINT, ctrl_c);*/
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			printf("\n");
