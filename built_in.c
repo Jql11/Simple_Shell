@@ -30,7 +30,7 @@ int _cd(char **argv)
   *get_help - help
   *@argv: argument
   *Return: 1
-  */
+  *
 int get_help(char **argv)
 {
 	int i;
@@ -40,4 +40,4 @@ int get_help(char **argv)
 		builtin_str[i].name;
 	}
 	return (1);
-}
+}*/
