@@ -58,18 +58,15 @@ int getexecve(char *command[], char *argv[], char *envp[])
 			if (commandWithPath)
 			{
 				command[0] = commandWithPath;
-				printf("mathcing path\n");
 				_fork(command, argv, envp);
 			}
 			else
 			{
-				printf("no matching path\n");
 				perror(argv[0]);
 			}
 		}
 		else
 		{
-			printf("full path\n");
 			_fork(command, argv, envp);
 		}
 	}
@@ -97,7 +94,6 @@ int _fork(char *command[], char *argv[], char *envp[])
 	{
 		if (execve(command[0], command, envp) == -1)
 		{
-			printf("child process error\n");
 			perror(argv[0]);
 			exit(EXIT_FAILURE);
 		}
