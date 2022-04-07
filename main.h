@@ -35,7 +35,7 @@ char *_getpath(char *envirname, char *command);
 /* built-in function */
 int update_pwd(char *pwd);
 int _cd(char **argv);
-int get_exit(__attribute__((unused))char **argv);
+int get_exit(char *command[]);
 void ctrl_c(int a);
 
 /* check if it is builtin */
@@ -54,10 +54,14 @@ int _strlen(const char *s);
 char *_strdup(char *str);
 /* compare 2 strings */
 int _strcmp(char *s1, char *s2);
-/*concatenates two strings*/
+/* concatenates two strings*/
 char *_strcat(char *dest, char *src);
 /* returns pointer to first occurrence of the matched string in given string */
 char *_strstr(char *haystack, const char *needle);
 
-
+/* integer manupilation */
+/* check if char is a digit */
+int _isdigit(char c);
+/* convert string to chart */
+int _atoi(char *s);
 #endif
