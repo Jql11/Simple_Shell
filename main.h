@@ -23,6 +23,8 @@ int commandlen(char *command[]);
 
 /* use execve to run the command */
 int getexecve(char *command[], char *argv[], char *envp[]);
+/*use fork*/
+int _fork(char *command[], char *argv[], char *envp[]);
 
 /* get the environment variables */
 char *_getenv(const char *name);

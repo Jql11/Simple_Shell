@@ -24,11 +24,11 @@ int _cd(char **argv)
 
 	if (argv[1] == NULL || (argv[1][0] == '~' && argv[1][1] == '\0'))
 	{
-		update_pwd(_getenv("HOME"));
+		update_pwd(getenv("HOME"));
 	}
 	else if (argv[1][0] == '-' && argv[1][1] == '\0')
 	{
-		write(STDOUT_FILENO, _getenv("OLDPWD"), _strlen(getenv("OLDPWD")));
+		write(STDOUT_FILENO, getenv("OLDPWD"), _strlen(getenv("OLDPWD")));
 		write(STDOUT_FILENO, "\n", 1);
 		chdir(getenv("OLDPWD"));
 	}
@@ -52,7 +52,7 @@ int update_pwd(char *pwd)
 	char **setPWDCommand;
 	char **setOLDPWDCommand;
 
-	oldDirectory = _getenv("PWD");
+	oldDirectory = getenv("PWD");
 	oldDirectoryHold = malloc(_strlen(oldDirectory) + 1);
 	if (oldDirectoryHold == NULL)
 		return (-1);

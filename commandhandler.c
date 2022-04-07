@@ -39,7 +39,7 @@ char **getcommands(char *buffer)
 }
 
 /**
- * getexecve - use execve to run the command
+ * getexecve - use execve to match the command
  * @command: command
  * @argv: argv[0]
  * @envp: environment path
@@ -47,9 +47,52 @@ char **getcommands(char *buffer)
  */
 int getexecve(char *command[], char *argv[], char *envp[])
 {
-	pid_t child;
 	struct stat st;
 	char *commandWithPath;
+
+	if (_getbuiltin(command) == 0)
+	{
+		if (stat(command[0], &st) != 0)
+		{
+			commandWithPath = _getpath("PATH", command[0]);
+			if (commandWithPath)
+			{
+				command[0] = commandWithPath;
+				_fork(command, argv, envp);
+			}
+			else
+			{
+				perror(argv[0]);
+			}
+		}
+		else
+		{
+			printf("if is fullpath, before fork");
+			_fork(command, argv, envp);
+		}
+	}
+	else
+	{
+		printf("if is buuiltin, before fork");
+		_fork(command, argv, envp);
+	}
+
+	return (1);
+}
+
+
+
+
+/**
+  *_fork - fork
+  * @command: command
+  * @argv: argv
+  * @envp: envp
+  * Return: 0
+  */
+int _fork(char *command[], char *argv[], char *envp[])
+{
+	pid_t child;
 
 	child = fork();
 	if (child == -1)
@@ -59,35 +102,17 @@ int getexecve(char *command[], char *argv[], char *envp[])
 	}
 	if (child == 0)
 	{
-		if (_getbuiltin(command) == 0)
+		if (execve(command[0], command, envp) == -1)
 		{
-			if (stat(command[0], &st) != 0)
-			{
-				commandWithPath = _getpath("PATH", command[0]);
-				if (commandWithPath)
-				{
-					command[0] = commandWithPath;
-					if (execve(command[0], command, envp) == -1)
-					{
-						perror(argv[0]);
-						exit(EXIT_FAILURE);
-					}
-				}
-			}
-			else
-			{
-				if (execve(command[0], command, envp) == -1)
-				{
-					perror(argv[0]);
-					exit(EXIT_FAILURE);
-				}
-			}
+			perror(argv[0]);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
 		wait(NULL);
 	return (0);
 }
+
 
 /**
  * _getenv - get the environment
@@ -138,7 +163,7 @@ char *_getpath(char *envirname, char *command)
 		path[i] = token;
 		count++;
 		token = strtok(NULL, ":");
-		printf("path[%d] is %s\n", i, path[i]);
+/*		printf("path[%d] is %s\n", i, path[i]);*/
 	}
 	free(environhold);
 	for (j = 0; j < count; j++)
