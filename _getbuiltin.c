@@ -11,7 +11,7 @@ int _getbuiltin(char *command[])
 	int i = 0;
 	mybuiltin builtin[] = {
 		{"env", _env},
-		{"exit", get_exit},
+		{"exit",get_exit},
 		{"cd", _cd},
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
