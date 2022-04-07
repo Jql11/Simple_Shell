@@ -68,7 +68,13 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		else
 		{
 			printf("if is fullpath, before fork");
-			_fork(command, argv, envp);
+			if (access(command[0], X_OK) != 0)
+			{
+				perror(command[0]);
+				free(command);
+			}
+			else
+				_fork(command, argv, envp);
 		}
 	}
 	else
@@ -130,7 +136,7 @@ char *_getenv(const char *name)
 	while (environ[i])
 	{
 		ret = _strstr(environ[i], name);
-		printf("environ[%d] is %s\n", i, environ[i]);
+/*		printf("environ[%d] is %s\n", i, environ[i]);*/
 		if (ret)
 			return (ret + len + 1);
 		i++;
