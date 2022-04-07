@@ -8,11 +8,24 @@
   *@argv: argument
   *Return: 0 as a signal for the command loop to terminate
   */
-int get_exit(__attribute__((unused))char **argv)
+int get_exit(char *command[1])
 {
-	write(STDOUT_FILENO, "EXIT SUCCESS", 12);
-	write(STDOUT_FILENO, "\n", 1);
-	exit(0);
+	int i = 0;
+	char digit;
+
+	if (command[1] != NULL)
+	{
+		digit = _isdigit(command[1][i]);
+		while (command[1][i])
+		{	
+			if (digit == 1)
+				i++;
+			if (digit == 0)
+				exit(132);
+		}
+		i = _atoi(command[1]);
+	}
+	exit(i);
 }
 /**
   *_cd - change current directory
