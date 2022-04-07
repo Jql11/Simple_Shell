@@ -101,5 +101,5 @@ int update_pwd(char *pwd)
   */
 void ctrl_c(__attribute__((unused))int a)
 {
-	write(STDOUT_FILENO, "", 0);
+	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
 }
