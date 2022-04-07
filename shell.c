@@ -38,7 +38,8 @@ int main(int ac, char *argv[], char *envp[])
 		signal(SIGINT, ctrl_c);
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
-			printf("\n");
+			free(buffer);
+			ctrl_d();
 			break;
 		}
 		command = getcommands(buffer);
