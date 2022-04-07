@@ -37,13 +37,13 @@ int _cd(char **argv)
 
 	if (argv[1] == NULL || (argv[1][0] == '~' && argv[1][1] == '\0'))
 	{
-		update_pwd(getenv("HOME"));
+		update_pwd(_getenv("HOME"));
 	}
 	else if (argv[1][0] == '-' && argv[1][1] == '\0')
 	{
-		write(STDOUT_FILENO, getenv("OLDPWD"), _strlen(getenv("OLDPWD")));
+		write(STDOUT_FILENO, _getenv("OLDPWD"), _strlen(_getenv("OLDPWD")));
 		write(STDOUT_FILENO, "\n", 1);
-		chdir(getenv("OLDPWD"));
+		chdir(_getenv("OLDPWD"));
 	}
 	else
 	{
@@ -65,7 +65,7 @@ int update_pwd(char *pwd)
 	char **setPWDCommand;
 	char **setOLDPWDCommand;
 
-	oldDirectory = getenv("PWD");
+	oldDirectory = _getenv("PWD");
 	oldDirectoryHold = malloc(_strlen(oldDirectory) + 1);
 	if (oldDirectoryHold == NULL)
 		return (-1);
@@ -103,3 +103,20 @@ void ctrl_c(__attribute__((unused))int a)
 {
 	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
 }
+/**
+  *ctrl_d - terminate program
+  */
+void ctrl_d(void)
+{
+	if (isatty(STDIN_FILENO))
+		exit(0);
+}
+
+
+
+
+
+
+
+
+
