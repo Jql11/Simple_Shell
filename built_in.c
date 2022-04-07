@@ -109,7 +109,8 @@ void ctrl_c(__attribute__((unused))int a)
 void ctrl_d(void)
 {
 	if (isatty(STDIN_FILENO))
-		exit(0);
+		write(STDOUT_FILENO, "\n", 1);
+	exit(0);
 }
 
 
