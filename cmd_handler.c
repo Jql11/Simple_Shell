@@ -66,14 +66,9 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		else
 			_fork(command, argv, envp);
 	}
-	else
-		_fork(command, argv, envp);
 
 	return (1);
 }
-
-
-
 
 /**
   *_fork - fork
@@ -104,7 +99,6 @@ int _fork(char *command[], char *argv[], char *envp[])
 		wait(NULL);
 	return (0);
 }
-
 
 /**
  * _getenv - get the environment

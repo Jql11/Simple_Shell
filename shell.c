@@ -39,13 +39,11 @@ int main(int ac, char *argv[], char *envp[])
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			printf("\n");
-			free(buffer);
 			break;
 		}
 		command = getcommands(buffer);
 		getexecve(command, argv, envp);
 	}
 	free(buffer);
-	free(command);
 	exit(0);
 }
