@@ -61,27 +61,13 @@ int getexecve(char *command[], char *argv[], char *envp[])
 				_fork(command, argv, envp);
 			}
 			else
-			{
 				perror(argv[0]);
-			}
 		}
 		else
-		{
-			printf("if is fullpath, before fork");
-			if (access(command[0], X_OK) != 0)
-			{
-				perror(command[0]);
-				free(command);
-			}
-			else
-				_fork(command, argv, envp);
-		}
+			_fork(command, argv, envp);
 	}
 	else
-	{
-		printf("if is buuiltin, before fork");
 		_fork(command, argv, envp);
-	}
 
 	return (1);
 }
