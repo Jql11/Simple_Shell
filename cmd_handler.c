@@ -66,7 +66,6 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		else
 			_fork(command, argv, envp);
 	}
-
 	return (1);
 }
 
