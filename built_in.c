@@ -5,7 +5,7 @@
 #include <string.h>
 /**
   *get_exit- exit function
-  *@argv: argument
+  *@command: command
   *Return: 0 as a signal for the command loop to terminate
   */
 int get_exit(char *command[1])
@@ -17,7 +17,7 @@ int get_exit(char *command[1])
 	{
 		digit = _isdigit(command[1][i]);
 		while (command[1][i])
-		{	
+		{
 			if (digit == 1)
 				i++;
 			if (digit == 0)
