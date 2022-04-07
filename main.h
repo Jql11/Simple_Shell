@@ -37,7 +37,7 @@ int update_pwd(char *pwd);
 int _cd(char **argv);
 int get_exit(char *command[]);
 void ctrl_c(int a);
-
+void ctrl_d(void);
 /* check if it is builtin */
 int _getbuiltin(char *command[]);
 /* print out environment variable */
