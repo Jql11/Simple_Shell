@@ -61,14 +61,10 @@ int getexecve(char *command[], char *argv[], char *envp[])
 				_fork(command, argv, envp);
 			}
 			else
-			{
 				perror(argv[0]);
-			}
 		}
 		else
-		{
 			_fork(command, argv, envp);
-		}
 	}
 	return (1);
 }
