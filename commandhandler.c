@@ -60,7 +60,7 @@ int getexecve(char *command[], char *argv[], char *envp[])
 				command[0] = commandWithPath;
 				_fork(command, argv, envp);
 			}
-			else 
+			else
 			{
 				perror(argv[0]);
 			}
@@ -83,15 +83,18 @@ int getexecve(char *command[], char *argv[], char *envp[])
 
 
 
-
-
-
-
+/**
+  *_fork - fork
+  * @command: command
+  * @argv: argv
+  * @envp: envp
+  * Return: 0
+  */
 int _fork(char *command[], char *argv[], char *envp[])
 {
 	pid_t child;
-	child = fork();
 
+	child = fork();
 	if (child == -1)
 	{
 		printf("ERROR: child process fail\n");
@@ -106,11 +109,10 @@ int _fork(char *command[], char *argv[], char *envp[])
 		}
 	}
 	else
-		wait (NULL);
+		wait(NULL);
 	return (0);
 }
 
-} 
 
 /**
  * _getenv - get the environment
