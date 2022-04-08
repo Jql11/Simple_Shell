@@ -48,7 +48,7 @@ int _cd(char **argv)
 	else
 	{
 		if (update_pwd(argv[1]) != 0)
-			perror("err");
+			perror("Error");
 	}
 	return (1);
 }

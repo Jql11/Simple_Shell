@@ -14,14 +14,13 @@
  * Return: an array of commands
  */
 
-/**
 char **getcommands(char *buffer)
 {
 	char *token;
 	char **command;
 	int i;
 
-	command = malloc(sizeof(*command));
+	command = malloc((sizeof(char *)) * _strlen(buffer));
 	if (command == NULL)
 		return (NULL);
 	token = strtok(buffer, " \t\n\r");
@@ -39,7 +38,8 @@ char **getcommands(char *buffer)
 
 	return (command);
 }
-*/
+
+/**
 char **getcommands(char *buffer)
 {
 	char **token_holder;
@@ -70,8 +70,8 @@ char **getcommands(char *buffer)
 	}
 	token_holder[i] = NULL;
 	return (token_holder);
-
 }
+*/
 
 /**
  * getexecve - use execve to match the command
