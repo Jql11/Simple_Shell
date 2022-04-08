@@ -58,7 +58,7 @@ int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 /* returns pointer to first occurrence of the matched string in given string */
 char *_strstr(char *haystack, const char *needle);
-
+char *_strncpy(char *dest, char *src, int n);
 /* integer manupilation */
 /* check if char is a digit */
 int _isdigit(char c);
