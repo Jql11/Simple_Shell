@@ -1,0 +1,119 @@
+.TH SIMPLE_SHELL 1 "08 April 2022" "version 1.0" "custom man page"
+.SH NAME
+.B Simple Shell - the standard command language interpreter
+.SH SYNOPSIS
+.B [command]
+.SH DESCRIPTION
+Simple Shell is a command language interpreter that shall execute commands read from a command line string, the standard input, or a specified file. It's functionality is limited to certain shell builtin functions found in the environmental variable
+.SS argument
+The positional parameters ($1, $2, and so on) shall be set to arguments, if any.
+.SS command_execution
+The pathname of a file containing commands. If the pathname contains one or more <slash> characters, the implementation attempts to read that file; the file need not be executable. If the pathname does not contain a <slash> character:
+
+.RS
+* The implementation shall attempt to search for a shell function by that name. If found, the function is invoked. 
+
+* If the name does not match a function, the implementation shall attempt to search for it in the list of shell builtins. If found, that builtin is invoked. 
+
+* If the name is neither a builtin function nor a shell function, the implementation may perform a search for an executable file using the value of PATH.
+.SS SAMPLE FUNCTIONS
+
+echo
+.I [arguments]
+.RS
+
+prints to standard output the argument(s) given and prints a newline
+.RE
+
+ls
+.I [[flags]...[arguments]]
+.RS
+
+lists files in the current directory according to the flags given by user
+.RE
+
+cd
+.RS
+
+changes directory and updates environmental variables OLDPWD and PWD
+.RE
+
+env
+.RS
+
+prints environmental variables
+.RE
+
+exit
+.RS
+
+terminate simple shell
+.RE
+
+setenv
+.RS
+
+add or change existing environmental variable within shell session
+.RE
+
+unsetenv
+.RS
+
+deletes existing environmental variable within shell session
+.RE
+.SS ENVIRONMENT VARIABLES
+
+HOME
+.RS
+Determine the pathname of the user's home directory.
+.RE 
+PATH
+.RS
+Establish a string formatted as described in the Base Definitions volume of POSIX.1‐2017, used to effectcommand interpretation.
+.RE 
+PWD
+.RS
+This variable shall represent an absolute pathname of the current working directory. Assignments to thisvariable may be ignored.
+.RE
+.SH EXAMPLE
+To invoke simple shell:
+.RS
+(your_terminal)$ ./simple_shell
+.RE
+.RS
+#cisfun$
+.RE
+
+Sample Usage:
+.RS
+#cisfun$
+echo "Hello World!"
+.RE
+.RS
+Hello World!
+.RE
+.RS
+#cisfun$
+/usr/bin/which ls
+.RE
+.RS
+/usr/bin/ls
+.RE
+
+To leave simple shell and return to your terminal:
+.RS
+#cisfun$
+exit
+.RE
+.RS
+(your_terminal)$
+
+.SH BUGS
+The command name should have been chosen more carefully to reflect its purpose.
+.SH AUTHORS
+Jacqueline Lu, Yuan Fang and Cienna Nguyen
+.SH "SEE ALSO"
+.BR bash(1),
+.BR sh(1),
+.BR ksh(1),
+.BR csh(1)
