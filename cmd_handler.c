@@ -169,7 +169,7 @@ char *_getpath(char *envirname, char *command)
 	char *path[32];
 	int i, j, count = 0;
 	struct stat st;
-	char *environment = _getenv(envirname);
+	char *environment = getenv(envirname);
 
 	environhold = malloc(_strlen(environment) + 1);
 	if (environhold == NULL)
@@ -189,7 +189,7 @@ char *_getpath(char *envirname, char *command)
 	}
 	for (j = 0; j < count; j++)
 	{
-		pathname = _strdup(path[j]);
+		pathname = strdup(path[j]);
 		pathname = strcat(pathname, "/");
 		pathname = strcat(pathname, command);
 		if (stat(pathname, &st) == 0)

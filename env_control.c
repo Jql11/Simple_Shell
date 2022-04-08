@@ -51,10 +51,10 @@ int _setenv(char *command[])
 	}
 	name = command[1];
 	value = command[2];
-	env = _strdup(name);
-	env = _strcat(env, "=");
-	env = _strcat(env, value);
-	while (environ[i] != NULL && _strstr(environ[i], name) == NULL)
+	env = strdup(name);
+	env = strcat(env, "=");
+	env = strcat(env, value);
+	while (environ[i] != NULL && strstr(environ[i], name) == NULL)
 	{
 		i++;
 	}
