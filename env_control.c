@@ -49,6 +49,7 @@ int _setenv(char *command[])
 		perror("Error");
 		return (-1);
 	}
+	printf("in function setenv\n");
 	name = command[1];
 	value = command[2];
 	env = malloc(sizeof(*env));
