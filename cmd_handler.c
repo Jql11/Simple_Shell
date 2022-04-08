@@ -14,7 +14,7 @@
  * Return: an array of commands
  */
 
-/*
+/**
 char **getcommands(char *buffer)
 {
 	char *token;
@@ -140,21 +140,28 @@ int _fork(char *command[], char *argv[], char *envp[])
 
 char *_getenv(const char *name)
 {
-	unsigned int i = 0;
-	char *ret = NULL;
-	int len;
+	int i, j;
+	char *value;
 
-	len = _strlen(name);
-	while (environ[i])
+	if (!name)
+		return (NULL);
+	for (i = 0; environ[i]; i++)
 	{
-		ret = _strstr(environ[i], name);
-/*		printf("environ[%d] is %s\n", i, environ[i]);*/
-		if (ret)
-			return (ret + len + 1);
-		i++;
-	}
+		j = 0;
+		while (name[j])
+		{
+			if (name[j] != environ[i][j])
+				break;
 
-	return (NULL);
+			j++;
+		}
+		if (name[j] == '\0' && environ[i][j] == '=')
+		{
+			value = (environ[i] + j + 1);
+			return (value);
+		}
+	}
+	return (0);
 }
 
 /**

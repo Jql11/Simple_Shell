@@ -69,7 +69,7 @@ int update_pwd(char *pwd)
 	oldDirectoryHold = malloc(_strlen(oldDirectory) + 1);
 	if (oldDirectoryHold == NULL)
 		return (-1);
-	strcpy(oldDirectoryHold, oldDirectory);
+	_strncpy(oldDirectoryHold, oldDirectory, _strlen(oldDirectory) + 1);
 
 	if (chdir(pwd) != 0)
 		return (-1);

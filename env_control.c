@@ -49,32 +49,21 @@ int _setenv(char *command[])
 		perror("Error");
 		return (-1);
 	}
-	printf("in function setenv\n");
 	name = command[1];
 	value = command[2];
-	printf("name is %s\n", name);
-	printf("value is %s\n", value);
-	env = malloc(sizeof(*env));
-	if (env == NULL)
-		return (-1);
 	env = _strdup(name);
-	printf("env after strup is %s\n", env);
 	env = _strcat(env, "=");
 	env = _strcat(env, value);
-	while (environ[i] != NULL && _strstr(environ[i], name) == NULL)
-	{
+	while (environ[i] != NULL && _strcmp(environ[i], name) != 0)
 		i++;
-	}
+
 	if (environ[i] == NULL)
 	{
 		environ[i] = env;
 		environ[i + 1] = NULL;
 	}
 	else
-	{
 		environ[i] = env;
-	}
-	free(env);
 	return (0);
 }
 
@@ -97,13 +86,9 @@ int _unsetenv(char *command[])
 	{
 		env = _strstr(environ[i], command[1]);
 		if (env != NULL)
-		{
 			index = i;
-		}
 		if (i >= index)
-		{
 			environ[i] = environ[i + 1];
-		}
 	}
 
 	return (0);
