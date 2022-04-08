@@ -45,29 +45,47 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * _strcat - concatenates two strings
- *@src: string to be copied
- *@dest: string copy to
- * Return: Always 0.
- */
-char *_strcat(char *dest, char *src)
+  * str_concat - concatenate two strings
+  * @s1: string 1
+  * @s2: string 2
+  * Return: return the string containing s1 and s2
+  */
+char *str_concat(char *s1, char *s2)
 {
-	int i = 0;
-	int j = 0;
+	int length1;
+	int length2;
+	char *newStr;
+	int i, j;
 
-	while (*(dest + j) != '\0')
+	if (s1 == NULL)
 	{
-		j++;
+		s1 = "";
 	}
-
-	while (*(src + i) != '\0')
+	if (s2 == NULL)
 	{
-		dest[j] = src[i];
+		s2 = "";
+	}
+	length1 = _strlen(s1);
+	length2 = _strlen(s2);
+	newStr = malloc((length1 + length2 + 1) * sizeof(char));
+	if (newStr == NULL)
+	{
+		return (NULL);
+	}
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		newStr[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (j <= length2)
+	{
+		newStr[i] = s2[j];
 		i++;
 		j++;
 	}
-	dest[j] = '\0';
-	return (dest);
+	return (newStr);
 }
 
 /**
