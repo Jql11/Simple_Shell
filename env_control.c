@@ -58,6 +58,7 @@ int _setenv(char *command[])
 	if (env == NULL)
 		return (-1);
 	env = _strdup(name);
+	printf("env after strup is %s\n", env);
 	env = _strcat(env, "=");
 	env = _strcat(env, value);
 	while (environ[i] != NULL && _strstr(environ[i], name) == NULL)
