@@ -41,7 +41,7 @@ int commandlen(char *command[])
  */
 int _setenv(char *command[])
 {
-	char *name, *value, *env;
+	char *name = NULL, *value = NULL, *env;
 	int i = 0;
 
 	if (commandlen(command) != 3)
