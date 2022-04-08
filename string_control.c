@@ -2,21 +2,6 @@
 #include "main.h"
 
 /**
-  * _strlen - returns the length of a string.
-  * @s: string to check
-  * Return: return the length.
-  */
-int _strlen(const char *s)
-{
-	int count = 0;
-
-	while (*(s + count) != '\0')
-		count++;
-
-	return (count);
-}
-
-/**
   * _strdup - return a pointer to the new allocated memory address
   * @str: given string
   * Return: return the pointer to new string address
@@ -33,7 +18,7 @@ char *_strdup(char *str)
 	dupStr = malloc((length + 1) * sizeof(char));
 	if (dupStr == NULL)
 		return (NULL);
-	for (i = 0; i < length; i++)
+	for (i = 0; i <= length; i++)
 		dupStr[i] = str[i];
 
 	return (dupStr);
@@ -54,8 +39,7 @@ int _strcmp(char *s1, char *s2)
 	{
 		if (s1[i] != s2[i])
 			return (s1[i] - s2[i]);
-		else
-			i++;
+		i++;
 	}
 	return (0);
 }
