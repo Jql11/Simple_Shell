@@ -13,6 +13,8 @@
  * @buffer: - command line
  * Return: an array of commands
  */
+
+/*
 char **getcommands(char *buffer)
 {
 	char *token;
@@ -37,6 +39,39 @@ char **getcommands(char *buffer)
 
 	return (command);
 }
+*/
+char **getcommands(char *buffer)
+{
+	char **token_holder;
+	char *token;
+	unsigned int length;
+	int i;
+
+	buffer[_strlen(buffer) - 1] = '\0';
+	length = _strlen(buffer);
+	if (length == 0)
+		return (NULL);
+	token_holder = malloc((sizeof(char *)) * (length + 1));
+	if (token_holder == NULL)
+		return (NULL);
+	i = 0;
+	token = strtok(buffer, " \t\n\r");
+	while (token != NULL)
+	{
+		token_holder[i] = malloc(_strlen(token) + 1);
+		if (token_holder[i] == NULL)
+		{
+			free(token_holder);
+			return (NULL);
+		}
+		_strncpy(token_holder[i], token, _strlen(token) + 1);
+		token = strtok(NULL, " ");
+		++i;
+	}
+	token_holder[i] = NULL;
+	return (token_holder);
+
+}
 
 /**
  * getexecve - use execve to match the command
@@ -52,27 +87,18 @@ int getexecve(char *command[], char *argv[], char *envp[])
 
 	if (_getbuiltin(command) == 0)
 	{
-		printf("before stat\n");
-		commandWithPath = _getpath("PATH", command[0]);
-		printf("commandwithpath is %s\n", commandWithPath);
 		if (stat(command[0], &st) != 0)
 		{
-			/*commandWithPath = _getpath("PATH", command[0]);
-			printf("commandwithpath is %s\n", commandWithPath);*/
+			commandWithPath = _getpath("PATH", command[0]);
 			if (commandWithPath)
 			{
 				command[0] = commandWithPath;
-/*				_fork(command, argv, envp);*/
 			}
 			else
 				perror(argv[0]);
 		}
-/*		else*/
 			_fork(command, argv, envp);
 	}
-/*	else
-		_getbuiltin(command);*/
-		
 	return (1);
 }
 
@@ -148,15 +174,18 @@ char *_getpath(char *envirname, char *command)
 	environhold = malloc(_strlen(environment) + 1);
 	if (environhold == NULL)
 		return (NULL);
-	strcpy(environhold, environment);
+	_strncpy(environhold, environment, _strlen(environment) + 1);
 	token = strtok(environhold, ":");
-	free(environhold);
+	if (token == NULL)
+	{
+		perror("Allocation error");
+		exit(EXIT_FAILURE);
+	}
 	for (i = 0; i < 32 && token != NULL; i++)
 	{
 		path[i] = token;
 		count++;
 		token = strtok(NULL, ":");
-		printf("path[%d] is %s\n", i, path[i]);
 	}
 	for (j = 0; j < count; j++)
 	{
