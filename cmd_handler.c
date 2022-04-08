@@ -190,8 +190,8 @@ char *_getpath(char *envirname, char *command)
 	for (j = 0; j < count; j++)
 	{
 		pathname = _strdup(path[j]);
-		pathname = _strcat(pathname, "/");
-		pathname = _strcat(pathname, command);
+		pathname = strcat(pathname, "/");
+		pathname = strcat(pathname, command);
 		if (stat(pathname, &st) == 0)
 			return (pathname);
 	}
