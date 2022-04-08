@@ -52,6 +52,8 @@ int _setenv(char *command[])
 	printf("in function setenv\n");
 	name = command[1];
 	value = command[2];
+	printf("name is %s\n", name);
+	printf("value is %s\n", value);
 	env = malloc(sizeof(*env));
 	if (env == NULL)
 		return (-1);
