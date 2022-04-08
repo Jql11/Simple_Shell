@@ -55,7 +55,7 @@ char *_strdup(char *str);
 /* compare 2 strings */
 int _strcmp(char *s1, char *s2);
 /* concatenates two strings*/
-char *_strcat(char *dest, char *src);
+char *_strcat(char *s1, char *s2);
 /* returns pointer to first occurrence of the matched string in given string */
 char *_strstr(char *haystack, const char *needle);
 char *_strncpy(char *dest, char *src, int n);
