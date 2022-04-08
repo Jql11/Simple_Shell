@@ -41,7 +41,7 @@ int commandlen(char *command[])
  */
 int _setenv(char *command[])
 {
-	char *name = NULL, *value = NULL, *env;
+	char *name = NULL, *value = NULL, *env = NULL;
 	int i = 0;
 
 	if (commandlen(command) != 3)
@@ -51,7 +51,7 @@ int _setenv(char *command[])
 	}
 	name = command[1];
 	value = command[2];
-	env = _strdup(name);
+	env = _strcat(env, name);
 	env = _strcat(env, "=");
 	env = _strcat(env, value);
 	while (environ[i] != NULL && _strcmp(environ[i], name) != 0)

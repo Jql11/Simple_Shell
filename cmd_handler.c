@@ -94,10 +94,8 @@ int getexecve(char *command[], char *argv[], char *envp[])
 			{
 				command[0] = commandWithPath;
 			}
-			else
-				perror(argv[0]);
 		}
-			_fork(command, argv, envp);
+		_fork(command, argv, envp);
 	}
 	return (1);
 }
