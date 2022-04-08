@@ -52,20 +52,27 @@ int getexecve(char *command[], char *argv[], char *envp[])
 
 	if (_getbuiltin(command) == 0)
 	{
+		printf("before stat\n");
+		commandWithPath = _getpath("PATH", command[0]);
+		printf("commandwithpath is %s\n", commandWithPath);
 		if (stat(command[0], &st) != 0)
 		{
-			commandWithPath = _getpath("PATH", command[0]);
+			/*commandWithPath = _getpath("PATH", command[0]);
+			printf("commandwithpath is %s\n", commandWithPath);*/
 			if (commandWithPath)
 			{
 				command[0] = commandWithPath;
-				_fork(command, argv, envp);
+/*				_fork(command, argv, envp);*/
 			}
 			else
 				perror(argv[0]);
 		}
-		else
+/*		else*/
 			_fork(command, argv, envp);
 	}
+/*	else
+		_getbuiltin(command);*/
+		
 	return (1);
 }
 
@@ -143,14 +150,14 @@ char *_getpath(char *envirname, char *command)
 		return (NULL);
 	strcpy(environhold, environment);
 	token = strtok(environhold, ":");
+	free(environhold);
 	for (i = 0; i < 32 && token != NULL; i++)
 	{
 		path[i] = token;
 		count++;
 		token = strtok(NULL, ":");
-/*		printf("path[%d] is %s\n", i, path[i]);*/
+		printf("path[%d] is %s\n", i, path[i]);
 	}
-	free(environhold);
 	for (j = 0; j < count; j++)
 	{
 		pathname = _strdup(path[j]);
