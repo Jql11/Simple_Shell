@@ -75,24 +75,27 @@ int update_pwd(char *pwd)
 		return (-1);
 
 	value = getcwd(NULL, 0);
-	setPWDCommand = malloc(sizeof(*setPWDCommand));
+	setPWDCommand = malloc(sizeof(*setPWDCommand) * 4);
 	if (setPWDCommand == NULL)
 		return (-1);
 	setPWDCommand[0] = "setenv";
 	setPWDCommand[1] = "PWD";
 	setPWDCommand[2] = value;
+	setPWDCommand[3] = NULL;
 	_setenv(setPWDCommand);
 
-	setOLDPWDCommand = malloc(sizeof(*setOLDPWDCommand));
+	setOLDPWDCommand = malloc(sizeof(*setOLDPWDCommand) * 4);
 	if (setOLDPWDCommand == NULL)
 		return (-1);
 	setOLDPWDCommand[0] = "setenv";
 	setOLDPWDCommand[1] = "OLDPWD";
 	setOLDPWDCommand[2] = oldDirectoryHold;
+	setOLDPWDCommand[3] = NULL;
 	_setenv(setOLDPWDCommand);
 
 	free(setPWDCommand);
 	free(setOLDPWDCommand);
+	free(oldDirectoryHold);
 	return (0);
 }
 /**
