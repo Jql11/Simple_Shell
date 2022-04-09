@@ -6,11 +6,11 @@
   * @s: string to check
   * Return: return the length.
   */
-int _strlen(const char *s)
+int _strlen(const char *str)
 {
 	int count = 0;
 
-	while (*(s + count) != '\0')
+	while (*(str + count) != '\0')
 		count++;
 
 	return (count);
