@@ -46,7 +46,7 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
-  * str_concat - concatenate two strings
+  * _strcat - concatenate two strings
   * @s1: string 1
   * @s2: string 2
   * Return: return the string containing s1 and s2
