@@ -43,7 +43,7 @@ int _cd(char **argv)
 	{
 		write(STDOUT_FILENO, _getenv("OLDPWD"), _strlen(_getenv("OLDPWD")));
 		write(STDOUT_FILENO, "\n", 1);
-		chdir(_getenv("OLDPWD"));
+		update_pwd(_getenv("OLDPWD"));
 	}
 	else
 	{
