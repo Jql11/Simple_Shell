@@ -30,7 +30,7 @@ char *_strdup(char *str)
  *
  * @s1:string 1
  * @s2:string 2
- * Return: copied string
+ * Return: whether two strings match
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -84,19 +84,19 @@ char *_strcat(char *s1, char *s2)
 }
 
 /**
- * compare - compare strings
- * @X: string 1
- * @Y: substring
- * Return: value
+ * _compare - compare strings
+ * @x: string 1
+ * @y: string 2
+ * Return: whether two strings match
  */
-int compare(const char *X, const char *Y)
+int _compare(const char *x, const char *y)
 {
-	while (*Y != '\0')
+	while (*y != '\0')
 	{
-		if (*X != *Y)
+		if (*x != *y)
 			return (0);
-		X++;
-		Y++;
+		x++;
+		y++;
 	}
 	return (1);
 }
@@ -114,7 +114,7 @@ char *_strstr(char *haystack, const char *needle)
 	{
 		if (*haystack == *needle)
 		{
-			if (compare(haystack, needle) == 1)
+			if (_compare(haystack, needle) == 1)
 				return (haystack);
 		}
 		haystack++;
