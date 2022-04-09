@@ -22,7 +22,7 @@ int main(int ac, char *argv[], char *envp[])
 
 	if (ac < 1)
 	{
-		printf("Invalid input.\n");
+		_puts("Invalid input.\n");
 		exit(1);
 	}
 
@@ -34,7 +34,7 @@ int main(int ac, char *argv[], char *envp[])
 	}
 	while (1)
 	{
-		printf("#cisfun$ ");
+		_puts("#cisfun$ ");
 		signal(SIGINT, ctrl_c);
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{

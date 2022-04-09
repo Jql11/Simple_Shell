@@ -64,4 +64,8 @@ char *_strncpy(char *dest, char *src, int n);
 int _isdigit(char c);
 /* convert string to chart */
 int _atoi(char *s);
+/* print the characters */
+int _putchar(char c);
+/* print the string */
+int _puts(char *str);
 #endif

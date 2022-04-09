@@ -80,7 +80,7 @@ int _fork(char *command[], char *argv[], char *envp[])
 	child = fork();
 	if (child == -1)
 	{
-		printf("ERROR: child process fail\n");
+		_puts("ERROR: child process fail\n");
 		return (1);
 	}
 	if (child == 0)
