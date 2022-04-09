@@ -84,10 +84,10 @@ char *_strcat(char *s1, char *s2)
 }
 
 /**
- *compare - compare strings
- *@X: string 1
- *@Y: substring
- *Return: value
+ * compare - compare strings
+ * @X: string 1
+ * @Y: substring
+ * Return: value
  */
 int compare(const char *X, const char *Y)
 {
