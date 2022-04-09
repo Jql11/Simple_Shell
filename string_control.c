@@ -94,9 +94,7 @@ int compare(const char *X, const char *Y)
 	while (*Y != '\0')
 	{
 		if (*X != *Y)
-		{
 			return (0);
-		}
 		X++;
 		Y++;
 	}
