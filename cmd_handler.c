@@ -40,40 +40,6 @@ char **getcommands(char *buffer)
 }
 
 /**
-char **getcommands(char *buffer)
-{
-	char **token_holder;
-	char *token;
-	unsigned int length;
-	int i;
-
-	buffer[_strlen(buffer) - 1] = '\0';
-	length = _strlen(buffer);
-	if (length == 0)
-		return (NULL);
-	token_holder = malloc((sizeof(char *)) * (length + 1));
-	if (token_holder == NULL)
-		return (NULL);
-	i = 0;
-	token = strtok(buffer, " \t\n\r");
-	while (token != NULL)
-	{
-		token_holder[i] = malloc(_strlen(token) + 1);
-		if (token_holder[i] == NULL)
-		{
-			free(token_holder);
-			return (NULL);
-		}
-		_strncpy(token_holder[i], token, _strlen(token) + 1);
-		token = strtok(NULL, " ");
-		++i;
-	}
-	token_holder[i] = NULL;
-	return (token_holder);
-}
-*/
-
-/**
  * getexecve - use execve to match the command
  * @command: command
  * @argv: argv[0]
