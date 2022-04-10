@@ -41,8 +41,12 @@ int main(int ac, char *argv[], char *envp[])
 			ctrl_d();
 			break;
 		}
+
 		command = getcommands(buffer);
-		getexecve(command, argv, envp);
+		if (command)
+			getexecve(command, argv, envp);
+		else
+			continue;
 	}
 	free(buffer);
 	free(command);

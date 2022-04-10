@@ -26,8 +26,7 @@ char **getcommands(char *buffer)
 	token = strtok(buffer, " \t\n\r");
 	if (token == NULL)
 	{
-		perror("Allocation error");
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 	for (i = 0; i < 16 && token != NULL; i++)
 	{
