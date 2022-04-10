@@ -6,32 +6,33 @@ A shell does three main things in its lifetime.
 2. Interpret: Next, the shell reads commands from stdin (which could be interactive, or a file) and executes them.
 3. Terminate: After its commands are executed, the shell executes any shutdown commands, frees up any memory, and terminates.
 To learn more about how the shell works, visit our blog here [blog]()
-## Builtins
+## Custom Builtins
 * `exit` exits shell (Usage: `exit [status]`)
 * `env` prints environmental variables (Usage: `env`)
 * `setenv` creates or modifies an environmental variable (Usage: `setenv name value`)
 * `unsetenv` removes an envrionmental variable (Usage: `unsetenv name value`)
 * `cd` changes directories (Usage: `cd [-][~][path]`)
 
-## Functions and system calls used
+## Functions and system calls used from C standard libraries
 `perror`, `fork`, `signal`, `malloc`, `free`, `getcwd`, `chdir`, `execve`, `write`, `wait`, `exit`
 
 ## Description of what each file shows:
 | File Name | Description |
 |-----------|-------------|
 | main.h | holds prototypes of functions spread across all files |
-| shell.c | holds entrance into program |
-| man_3_shell | custom manpage for our simple shell |
+| shell.c | holds entrance into the Simple Shell program |
+| man_1_simple_shell | custom manual page for our simple shell |
 
 ### Helper files
 | File Name | Description |
 |-----------|-------------|
-| _env.c | functions for built-in commands including env, setenv, unsetenv |
-| built_in.c | functions for built-in commands including exit, cd, ctrl_c |
+| env_control.c | custom functions for built-in commands, replica of env, setenv, unsetenv |
+| built_in.c | custom functions for built-in commands, replica of exit, cd, ctrl_c, ctrl_d |
 | _getbuiltin.c | execute functions for built-in commands |
-| commandhandler.c | read parse and execute commands |
-| stringcontrol.c | handle strings including comparing, duplicating, concatenatingand length of a string |
-
+| cmd_handler.c | read parse, fork a child process, get environment, execute commands |
+| int_control.c | handle intergers including checking if a character is an integer and converting string to intergers |
+| string_control.c | handle strings including comparing, duplicating, concatenatingand length of a string |
+| string_control2.c | handle strings including getting string's length, copying the string, and printing out  each char of string |
 ## Environment
 * Language: C
 * OS: Ubuntu 14.04 LTS
@@ -74,12 +75,4 @@ More functionality can still be added (e.g. handle aliases, pipelines)
 * Jacqueline Lu 
 * Yuan Fang 
 * Cienna Nguyen
-
-
-
-
-
-
-
-
 
