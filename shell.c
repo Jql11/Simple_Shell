@@ -26,7 +26,7 @@ int main(int ac, char *argv[], char *envp[])
 		exit(1);
 	}
 
-	buffer = (char *)malloc(sizeof(*buffer));
+	buffer = (char *)malloc(sizeof(*buffer) * bufsize);
 	if (buffer == NULL)
 	{
 		perror("Unable to allocate buffer");
@@ -34,7 +34,8 @@ int main(int ac, char *argv[], char *envp[])
 	}
 	while (1)
 	{
-		_puts("#cisfun$ ");
+		if (isatty(STDIN_FILENO))
+			_puts("#cisfun$ ");
 		signal(SIGINT, ctrl_c);
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
