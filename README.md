@@ -14,7 +14,7 @@ To learn more about how the shell works, visit our blog here [blog]()
 * `cd` changes directories (Usage: `cd [-][~][path]`)
 
 ## Functions and system calls used from C standard libraries
-`perror`, `fork`, `signal`, `malloc`, `free`, `getcwd`, `chdir`, `execve`, `write`, `wait`, `exit`
+`isatty`, `perror`, `fork`, `signal`, `malloc`, `free`, `getcwd`, `chdir`, `execve`, `write`, `wait`, `exit`
 
 ## Description of what each file shows:
 | File Name | Description |
