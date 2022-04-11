@@ -90,7 +90,10 @@ int _fork(char *command[], char *argv[], char *envp[])
 		}
 	}
 	else
+	{
 		wait(NULL);
+	}
+
 	return (0);
 }
 
@@ -138,7 +141,7 @@ char *_getpath(char *envirname, char *command)
 	char *path[32];
 	int i, j, count = 0;
 	struct stat st;
-	char *environment = getenv(envirname);
+	char *environment = _getenv(envirname);
 
 	environhold = malloc(_strlen(environment) + 1);
 	if (environhold == NULL)
@@ -166,6 +169,9 @@ char *_getpath(char *envirname, char *command)
 		{
 			return (pathname);
 		}
+		printf("pathname before free: %s\n", pathname);
+		free(pathname);
 	}
+	free(environhold);
 	return (NULL);
 }
