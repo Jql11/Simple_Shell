@@ -169,9 +169,7 @@ char *_getpath(char *envirname, char *command)
 		{
 			return (pathname);
 		}
-		printf("pathname before free: %s\n", pathname);
 		free(pathname);
 	}
-	free(environhold);
 	return (NULL);
 }
