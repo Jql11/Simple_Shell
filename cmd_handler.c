@@ -26,6 +26,7 @@ char **getcommands(char *buffer)
 	token = strtok(buffer, " \t\n\r");
 	if (token == NULL)
 	{
+		free(command);
 		return (NULL);
 	}
 	for (i = 0; i < 16 && token != NULL; i++)
@@ -146,6 +147,7 @@ char *_getpath(char *envirname, char *command)
 	token = strtok(environhold, ":");
 	if (token == NULL)
 	{
+		free(environhold);
 		perror("Allocation error");
 		exit(EXIT_FAILURE);
 	}
