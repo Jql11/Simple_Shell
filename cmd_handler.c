@@ -56,9 +56,7 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		{
 			commandWithPath = _getpath("PATH", command[0]);
 			if (commandWithPath)
-			{
 				command[0] = commandWithPath;
-			}
 		}
 		_fork(command, argv, envp);
 	}
@@ -159,11 +157,13 @@ char *_getpath(char *envirname, char *command)
 	}
 	for (j = 0; j < count; j++)
 	{
-		pathname = strdup(path[j]);
-		pathname = strcat(pathname, "/");
-		pathname = strcat(pathname, command);
+		pathname = _strdup(path[j]);
+		pathname = _strcat(pathname, "/");
+		pathname = _strcat(pathname, command);
 		if (stat(pathname, &st) == 0)
+		{
 			return (pathname);
+		}
 	}
 	return (NULL);
 }
