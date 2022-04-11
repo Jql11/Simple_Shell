@@ -35,8 +35,10 @@ int main(int ac, char *argv[], char *envp[])
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
+		{
 			_puts("#cisfun$ ");
-		signal(SIGINT, ctrl_c);
+			signal(SIGINT, ctrl_c);
+		}
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			ctrl_d();
