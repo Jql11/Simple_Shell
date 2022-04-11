@@ -41,6 +41,7 @@ int main(int ac, char *argv[], char *envp[])
 		}
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
+			free(buffer);
 			ctrl_d();
 			break;
 		}
