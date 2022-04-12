@@ -50,7 +50,10 @@ int main(int ac, char *argv[], char *envp[])
 		if (command)
 			getexecve(command, argv, envp);
 		else
+		{
+			free(command);
 			continue;
+		}
 	}
 	exit(0);
 }
