@@ -69,5 +69,7 @@ int main(int ac, char *argv[], char *envp[])
 		free(command[i]);
 	free(command);
 	*/
+	printf("main: free(buffer)\n");
+	printf("main: free(command)\n");
 	exit(0);
 }
