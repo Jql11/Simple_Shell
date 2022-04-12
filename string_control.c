@@ -34,20 +34,19 @@ char *_strdup(char *str)
  */
 int _strcmp(char *s1, char *s2)
 {
-	int flag=0;
+	int i = 0;
+	int value = 0;
 
-	while(*s1 != '\0' && *s2 != '\0')
+	while (s1[i] == s2[i])
 	{
-		if(*s1 != *s2)
-			flag = 1;
-		s1++;
-		s2++;
+		if (s1[i] == '\0')
+			break;
+		if (s2[i] == '\0')
+			break;
+		i++;
 	}
-
-	if (flag == 0)
-		return 0;
-	else
-		return 1;
+	value = s1[i] - s2[i];
+	return (value);
 }
 
 
