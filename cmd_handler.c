@@ -143,7 +143,7 @@ char *_getpath(char *envirname, char *command)
 	struct stat st;
 	char *environment = _getenv(envirname);
 
-	environhold = malloc(_strlen(environment) + 1);
+	environhold = malloc((_strlen(environment) + 1) * sizeof(char));
 	if (environhold == NULL)
 		return (NULL);
 	_strncpy(environhold, environment, _strlen(environment) + 1);
@@ -161,7 +161,6 @@ char *_getpath(char *envirname, char *command)
 		token = strtok(NULL, ":");
 	}
 	free(token);
-	free(environhold);
 	for (j = 0; j < count; j++)
 	{
 		pathname = _strdup(path[j]);
@@ -169,9 +168,11 @@ char *_getpath(char *envirname, char *command)
 		pathname = _strcat(pathname, command);
 		if (stat(pathname, &st) == 0)
 		{
+			free(environhold);
 			return (pathname);
 		}
 		free(pathname);
 	}
+	free(environhold);
 	return (NULL);
 }
