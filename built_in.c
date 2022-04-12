@@ -34,12 +34,15 @@ int get_exit(char *command[])
 		}
 		i = _atoi(command[1]);
 	}
-	for (j = 0; command[j] != NULL; j++)
+	if (command[1] == NULL)
 	{
+		for (j = 0; command[j] != NULL; j++)
+		{
+			printf("get_exit: free(command)\n");
+			free(command[j]);
+		}
 		printf("get_exit: free(command)\n");
-		free(command[j]);
 	}
-	printf("get_exit: free(command)\n");
 	free(command);
 	exit(i);
 }
