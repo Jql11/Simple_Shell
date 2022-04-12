@@ -60,7 +60,6 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		_fork(command, argv, envp);
 	}
 
-	free(commandWithPath);
 	for (i = 0; command[i] != NULL; i++)
 		free(command[i]);
 	free(command);
