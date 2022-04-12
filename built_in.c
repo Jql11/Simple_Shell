@@ -10,7 +10,7 @@
   */
 int get_exit(char *command[])
 {
-	int i, j = 0;
+	int i = 0, j = 0;
 	char digit;
 
 	if (command[1] != NULL)
