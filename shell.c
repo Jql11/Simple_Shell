@@ -16,17 +16,15 @@
 
 int main(int ac, char *argv[], char *envp[])
 {
-	char *buffer = NULL;
+	char *buffer, **command;
 	size_t bufsize = 32;
 	int i;
-	char **command;
 
 	if (ac < 1)
 	{
 		_puts("Invalid input.\n");
 		exit(1);
 	}
-
 	buffer = (char *)malloc(sizeof(*buffer) * bufsize);
 	if (buffer == NULL)
 	{
@@ -46,7 +44,6 @@ int main(int ac, char *argv[], char *envp[])
 			ctrl_d();
 			break;
 		}
-
 		command = getcommands(buffer);
 		if (command)
 			getexecve(command, argv, envp);
