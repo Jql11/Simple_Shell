@@ -18,6 +18,7 @@ int main(int ac, char *argv[], char *envp[])
 {
 	char *buffer = NULL;
 	size_t bufsize = 32;
+	int i;
 	char **command;
 
 	if (ac < 1)
@@ -53,6 +54,8 @@ int main(int ac, char *argv[], char *envp[])
 			continue;
 	}
 	free(buffer);
+	for (i = 0; command[i] != NULL; i++)
+		free(command[i]);
 	free(command);
 	exit(0);
 }
