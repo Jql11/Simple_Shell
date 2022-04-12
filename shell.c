@@ -59,9 +59,11 @@ int main(int ac, char *argv[], char *envp[])
 			continue;
 		}
 	}
+	/**
 	free(buffer);
 	for (i = 0; command[i] != NULL; i++)
 		free(command[i]);
 	free(command);
+	*/
 	exit(0);
 }
