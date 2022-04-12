@@ -8,15 +8,10 @@
   * @command: command
   * Return: void
   */
-int _env(char *command[])
+int _env(__attribute__((unused))char *command[])
 {
 	int i = 0;
-	if (commandlen(command) != 1)
-	{
-		write(STDOUT_FILENO, "env: illegal option", 19);
-		write(STDOUT_FILENO, "\n", 1);
-		return (-1);
-	}
+
 	while (environ[i])
 	{
 		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));

@@ -41,7 +41,8 @@ void ctrl_d(void);
 /* check if it is builtin */
 int _getbuiltin(char *command[]);
 /* print out environment variable */
-int _env(char *command[]);
+/* int _env(char *command[]);*/
+int _env(__attribute__((unused))char *command[]);
 /* set environment variables */
 int _setenv(char *command[]);
 /* remove environment variable */
