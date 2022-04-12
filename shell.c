@@ -27,7 +27,7 @@ int main(int ac, char *argv[], char *envp[])
 		exit(1);
 	}
 
-	buffer = malloc(sizeof(char *) * bufsize);
+	buffer = malloc(sizeof(char) * bufsize);
 	if (buffer == NULL)
 	{
 		perror("Unable to allocate buffer");

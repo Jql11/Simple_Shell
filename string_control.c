@@ -22,7 +22,6 @@ char *_strdup(char *str)
 	for (i = 0; i <= length; i++)
 		dupStr[i] = str[i];
 
-	free(str);
 	return (dupStr);
 }
 
@@ -87,8 +86,7 @@ char *_strcat(char *s1, char *s2)
 		i++;
 		j++;
 	}
-	free(s1);
-	free(s2);
+
 	return (newStr);
 }
 
