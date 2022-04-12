@@ -20,7 +20,6 @@ char **getcommands(char *buffer)
 	char **command;
 	int i;
 
-	printf("getcommands: malloc(command)\n");
 	command = malloc((sizeof(char *)) * _strlen(buffer));
 	if (command == NULL)
 		return (NULL);
@@ -59,6 +58,8 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		}
 		_fork(command, argv, envp);
 	}
+
+	free(command);
 	return (1);
 }
 
