@@ -5,7 +5,7 @@ A shell does three main things in its lifetime.
 1. Initialize: In this step, a typical shell would read and execute its configuration files. These change aspects of the shell’s behavior.
 2. Interpret: Next, the shell reads commands from stdin (which could be interactive, or a file) and executes them.
 3. Terminate: After its commands are executed, the shell executes any shutdown commands, frees up any memory, and terminates.
-To learn more about how the shell works, visit our blog here [blog]()
+To learn more about how the shell works, visit our blog here [blog](https://www.linkedin.com/pulse/behing-scenes-what-really-happens-when-executing-ls-l-cienna-nguyen)
 ## Custom Builtins
 * `exit` exits shell (Usage: `exit [status]`)
 * `env` prints environmental variables (Usage: `env`)
