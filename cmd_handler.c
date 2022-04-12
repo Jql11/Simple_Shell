@@ -47,6 +47,7 @@ int getexecve(char *command[], char *argv[], char *envp[])
 {
 	struct stat st;
 	char *commandWithPath = NULL;
+	int i;
 
 	if (_getbuiltin(command) == 0)
 	{
@@ -60,6 +61,8 @@ int getexecve(char *command[], char *argv[], char *envp[])
 	}
 
 	free(commandWithPath);
+	for (i = 0; command[i] != NULL; i++)
+		free(command[i]);
 	free(command);
 	return (1);
 }
