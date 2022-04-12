@@ -43,6 +43,9 @@ int main(int ac, char *argv[], char *envp[])
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			free(buffer);
+			for (i = 0; command[i] != NULL; i++)
+				free(command[i]);
+			free(command);
 			ctrl_d();
 			break;
 		}
