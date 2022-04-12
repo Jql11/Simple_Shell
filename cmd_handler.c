@@ -46,7 +46,7 @@ char **getcommands(char *buffer)
 int getexecve(char *command[], char *argv[], char *envp[])
 {
 	struct stat st;
-	char *commandWithPath;
+	char *commandWithPath = NULL;
 
 	if (_getbuiltin(command) == 0)
 	{
@@ -59,6 +59,7 @@ int getexecve(char *command[], char *argv[], char *envp[])
 		_fork(command, argv, envp);
 	}
 
+	free(commandWithPath);
 	free(command);
 	return (1);
 }
