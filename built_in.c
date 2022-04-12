@@ -22,6 +22,7 @@ int get_exit(char *command[])
 				i++;
 			if (digit == 0)
 			{
+				printf("get_exit: free(command)\n");
 				for (i = 0; command[i] != NULL; i++)
 					free(command[i]);
 				free(command);
@@ -30,6 +31,7 @@ int get_exit(char *command[])
 		}
 		i = _atoi(command[1]);
 	}
+	printf("get_exit: free(command)\n");
 	for (i = 0; command[i] != NULL; i++)
 		free(command[i]);
 	free(command);

@@ -27,6 +27,7 @@ int main(int ac, char *argv[], char *envp[])
 		exit(1);
 	}
 
+	printf("main: malloc(buffer)\n");
 	buffer = malloc(sizeof(char *) * bufsize);
 	if (buffer == NULL)
 	{
@@ -42,6 +43,8 @@ int main(int ac, char *argv[], char *envp[])
 		}
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
+			printf("main: free(buffer)\n");
+			printf("main: free(command)\n");
 			free(buffer);
 			free(command);
 			ctrl_d();
@@ -53,6 +56,7 @@ int main(int ac, char *argv[], char *envp[])
 			getexecve(command, argv, envp);
 		else
 		{
+			printf("main: free(command)\n");
 			for (i = 0; command[i] != NULL; i++)
 				free(command[i]);
 			free(command);
