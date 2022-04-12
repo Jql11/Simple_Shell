@@ -11,6 +11,7 @@
 int _env(char *command[])
 {
 	int i = 0;
+
 	if (commandlen(command) != 1)
 	{
 		write(STDOUT_FILENO, "env: illegal option", 19);
