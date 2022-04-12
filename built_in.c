@@ -21,10 +21,14 @@ int get_exit(char *command[1])
 			if (digit == 1)
 				i++;
 			if (digit == 0)
+			{
+				free(command);
 				exit(132);
+			}
 		}
 		i = _atoi(command[1]);
 	}
+	free(command);
 	exit(i);
 }
 /**
