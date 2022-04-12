@@ -16,16 +16,18 @@
 
 int main(int ac, char *argv[], char *envp[])
 {
-	char *buffer, **command;
+	char *buffer = NULL;
 	size_t bufsize = 32;
 	int i;
+	char **command;
 
 	if (ac < 1)
 	{
 		_puts("Invalid input.\n");
 		exit(1);
 	}
-	buffer = malloc(sizeof(char) * bufsize);
+
+	buffer = (char *)malloc(sizeof(*buffer) * bufsize);
 	if (buffer == NULL)
 	{
 		perror("Unable to allocate buffer");
@@ -44,16 +46,16 @@ int main(int ac, char *argv[], char *envp[])
 			ctrl_d();
 			break;
 		}
+
 		command = getcommands(buffer);
 		if (command)
 			getexecve(command, argv, envp);
 		else
-		{
-			for (i = 0; command[i] != NULL; i++)
-				free(command[i]);
-			free(command);
 			continue;
-		}
 	}
+	free(buffer);
+	for (i = 0; command[i] != NULL; i++)
+		free(command[i]);
+	free(command);
 	exit(0);
 }

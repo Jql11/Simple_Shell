@@ -34,19 +34,16 @@ char *_strdup(char *str)
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
-	int value = 0;
-
-	while (s1[i] == s2[i])
+	while ((*s1 != '\0') || (*s2 != '\0'))
 	{
-		if (s1[i] == '\0')
-			break;
-		if (s2[i] == '\0')
-			break;
-		i++;
+		if (*s1 != *s2)
+		{
+			return (*s1 - *s2);
+		}
+		s1++;
+		s2++;
 	}
-	value = s1[i] - s2[i];
-	return (value);
+	return (0);
 }
 
 
@@ -85,7 +82,6 @@ char *_strcat(char *s1, char *s2)
 		i++;
 		j++;
 	}
-
 	return (newStr);
 }
 

@@ -8,7 +8,7 @@
   *@command: command
   *Return: 0 as a signal for the command loop to terminate
   */
-int get_exit(char *command[])
+int get_exit(char *command[1])
 {
 	int i = 0;
 	char digit;
@@ -22,14 +22,12 @@ int get_exit(char *command[])
 				i++;
 			if (digit == 0)
 			{
-				free(command[0]);
 				free(command);
 				exit(132);
 			}
 		}
 		i = _atoi(command[1]);
 	}
-	free(command[0]);
 	free(command);
 	exit(i);
 }
