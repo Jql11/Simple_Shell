@@ -27,6 +27,13 @@ int main(int ac, char *argv[], char *envp[])
 		exit(1);
 	}
 
+	printf("main: - malloc(buffer)\n");
+	buffer = malloc(sizeof(char *) * bufsize);
+	if (buffer == NULL)
+	{
+		perror("Unable to allocate buffer");
+		exit(1);
+	}
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -34,29 +41,21 @@ int main(int ac, char *argv[], char *envp[])
 			_puts("#cisfun$ ");
 			signal(SIGINT, ctrl_c);
 		}
-		buffer = malloc(sizeof(char *) * bufsize);
-		printf("main: - malloc(buffer)\n");
-		if (buffer == NULL)
-		{
-			perror("Unable to allocate buffer");
-			exit(1);
-		}
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			free(buffer);
-			printf("main: - free(buffer)\n");
 			ctrl_d();
 			break;
 		}
 
 		command = getcommands(buffer);
-		free(buffer);
-		printf("main: - free(buffer)\n");
 		if (command)
 			getexecve(command, argv, envp);
 		else
 			continue;
 	}
+	free(buffer);
+	printf("main: - free(buffer)\n");
 	for (i = 0; command[i] != NULL; i++)
 		free(command[i]);
 	free(command);

@@ -8,7 +8,7 @@
   *@command: command
   *Return: 0 as a signal for the command loop to terminate
   */
-int get_exit(char *command[1])
+int get_exit(char *command[])
 {
 	int i = 0;
 	char digit;
