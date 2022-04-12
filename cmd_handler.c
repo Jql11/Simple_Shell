@@ -33,6 +33,7 @@ char **getcommands(char *buffer)
 	}
 	command[i] = NULL;
 
+	free(token);
 	return (command);
 }
 
