@@ -2,20 +2,25 @@
 .SH NAME
 .B Simple Shell - the standard command language interpreter
 .SH SYNOPSIS
-.B [command]
+.B [command][argument...]
 .SH DESCRIPTION
 Simple Shell is a command language interpreter that shall execute commands read from a command line string, the standard input, or a specified file. It's functionality is limited to certain shell builtin functions found in the environmental variable
 .SS argument
 The positional parameters ($1, $2, and so on) shall be set to arguments, if any.
 .SS command_execution
 The pathname of a file containing commands. If the pathname contains one or more <slash> characters, the implementation attempts to read that file; the file need not be executable. If the pathname does not contain a <slash> character:
-
 .RS
 * The implementation shall attempt to search for a shell function by that name. If found, the function is invoked. 
 
 * If the name does not match a function, the implementation shall attempt to search for it in the list of shell builtins. If found, that builtin is invoked. 
 
 * If the name is neither a builtin function nor a shell function, the implementation may perform a search for an executable file using the value of PATH.
+.SS Invocation
+
+.I Interactive
+simple shell can be invoked by typing ./simple_shell. Meanwhile, a
+.I Non-interactive
+simple shell can also be invoked via a pipe (e.g. echo "/bin/ls" | ./simple_shell).
 .SS SAMPLE FUNCTIONS
 
 echo
