@@ -10,7 +10,7 @@
   */
 int get_exit(char *command[])
 {
-	int i = 0, j = 0;
+	int i = 0;
 	char digit;
 
 	if (command[1] != NULL)
@@ -23,8 +23,6 @@ int get_exit(char *command[])
 			if (digit == 0)
 			{
 				printf("get_exit: free(command)\n");
-				for (j = 0; command[j] != NULL; j++)
-					free(command[j]);
 				free(command);
 				exit(132);
 			}
@@ -32,8 +30,6 @@ int get_exit(char *command[])
 		i = _atoi(command[1]);
 	}
 	printf("get_exit: free(command)\n");
-	for (j = 0; command[j] != NULL; j++)
-		free(command[j]);
 	free(command);
 	exit(i);
 }
