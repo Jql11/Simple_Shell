@@ -18,7 +18,6 @@ int main(int ac, char *argv[], char *envp[])
 {
 	char *buffer;
 	size_t bufsize = 32;
-	int i;
 	char **command;
 
 	if (ac < 1)
