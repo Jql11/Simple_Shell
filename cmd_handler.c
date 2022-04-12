@@ -160,6 +160,8 @@ char *_getpath(char *envirname, char *command)
 		count++;
 		token = strtok(NULL, ":");
 	}
+	free(token);
+	free(environhold);
 	for (j = 0; j < count; j++)
 	{
 		pathname = _strdup(path[j]);
