@@ -33,6 +33,30 @@ To learn more about how the shell works, visit our blog here [blog]()
 | int_control.c | handle intergers including checking if a character is an integer and converting string to intergers |
 | string_control.c | handle strings including comparing, duplicating, concatenatingand length of a string |
 | string_control2.c | handle strings including getting string's length, copying the string, and printing out  each char of string |
+## Mode
+The simple shell work like this in interactive mode:
+```C
+$ ./hsh
+($) /bin/ls
+hsh main.c shell.c
+($)
+($) exit
+$
+```
+but also in non-interactive mode:
+```C
+$ echo "/bin/ls" | ./hsh
+hsh main.c shell.c test_ls_2
+$
+$ cat test_ls_2
+/bin/ls
+/bin/ls
+$
+$ cat test_ls_2 | ./hsh
+hsh main.c shell.c test_ls_2
+hsh main.c shell.c test_ls_2
+$
+```
 ## Environment
 * Language: C
 * OS: Ubuntu 14.04 LTS
