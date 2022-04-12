@@ -22,13 +22,17 @@ int get_exit(char *command[1])
 				i++;
 			if (digit == 0)
 			{
+				printf("get_exit: - free(command)\n");
 				free(command);
 				exit(132);
 			}
 		}
 		i = _atoi(command[1]);
 	}
+	for (i = 0; command[i] != NULL; i++)
+		free(command[i]);
 	free(command);
+	printf("get_exit: - free(command)\n");
 	exit(i);
 }
 /**
