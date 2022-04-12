@@ -27,7 +27,6 @@ int main(int ac, char *argv[], char *envp[])
 		exit(1);
 	}
 
-	printf("main: - malloc(buffer)\n");
 	buffer = malloc(sizeof(char *) * bufsize);
 	if (buffer == NULL)
 	{
@@ -55,10 +54,8 @@ int main(int ac, char *argv[], char *envp[])
 			continue;
 	}
 	free(buffer);
-	printf("main: - free(buffer)\n");
 	for (i = 0; command[i] != NULL; i++)
 		free(command[i]);
 	free(command);
-	printf("main: - free(command)\n");
 	exit(0);
 }

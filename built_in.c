@@ -22,7 +22,8 @@ int get_exit(char *command[])
 				i++;
 			if (digit == 0)
 			{
-				printf("get_exit: - free(command)\n");
+				for (i = 0; command[i] != NULL; i++)
+					free(command[i]);
 				free(command);
 				exit(132);
 			}
@@ -32,7 +33,6 @@ int get_exit(char *command[])
 	for (i = 0; command[i] != NULL; i++)
 		free(command[i]);
 	free(command);
-	printf("get_exit: - free(command)\n");
 	exit(i);
 }
 /**
