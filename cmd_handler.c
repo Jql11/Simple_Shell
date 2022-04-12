@@ -34,6 +34,7 @@ char **getcommands(char *buffer)
 	command[i] = NULL;
 
 	free(token);
+	free(buffer);
 	return (command);
 }
 
