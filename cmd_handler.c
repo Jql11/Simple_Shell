@@ -25,10 +25,7 @@ char **getcommands(char *buffer)
 		return (NULL);
 	token = strtok(buffer, " \t\n\r");
 	if (token == NULL)
-	{
-		free(command);
 		return (NULL);
-	}
 	for (i = 0; i < 16 && token != NULL; i++)
 	{
 		command[i] = token;
@@ -36,6 +33,7 @@ char **getcommands(char *buffer)
 	}
 	command[i] = NULL;
 
+	free(token);
 	return (command);
 }
 
